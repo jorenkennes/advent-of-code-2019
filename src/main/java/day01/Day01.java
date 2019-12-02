@@ -12,6 +12,7 @@ public class Day01 {
 
         int result1 = day01.calculateExercise1(Util.readFile("day01.txt"));
         int result2 = day01.calculateExercise2(Util.readFile("day01.txt"));
+
         System.out.println(result1);
         System.out.println(result2);
     }

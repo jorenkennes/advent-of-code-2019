@@ -23,53 +23,33 @@ public class Day02Test {
     List<Integer> LIST_E = List.of(1,1,1,4,99,5,6,0,99);
     List<Integer> LIST_E_RESULT = List.of(30,1,1,4,2,5,6,0,99);
 
-
     @Test
-    public void exercise1_given_LIST_A_expects_first_3500() {
+    public void runProgram_given_LIST_A_expects_LIST_A_RESULT() {
         Day02 day02 = new Day02();
-        List<Integer> finalList = day02.exercise1(LIST_A);
-        assertThat(finalList).isEqualTo(LIST_A_RESULT);
-        assertThat(finalList.get(0)).isEqualTo(3500);
+        assertThat(day02.runProgram(LIST_A)).isEqualTo(LIST_A_RESULT);
     }
 
     @Test
-    public void exercise1_given_LIST_B_expects_first_2() {
+    public void runProgram_given_LIST_B_expects_LIST_B_RESULT() {
         Day02 day02 = new Day02();
-        List<Integer> finalList = day02.exercise1(LIST_B);
-        assertThat(finalList).isEqualTo(LIST_B_RESULT);
-        assertThat(finalList.get(0)).isEqualTo(2);
+        assertThat(day02.runProgram(LIST_B)).isEqualTo(LIST_B_RESULT);
     }
 
     @Test
-    public void exercise1_given_LIST_C_expects_first_2() {
+    public void runProgram_given_LIST_C_expects_LIST_C_RESULT() {
         Day02 day02 = new Day02();
-        List<Integer> finalList = day02.exercise1(LIST_C);
-        assertThat(finalList).isEqualTo(LIST_C_RESULT);
-        assertThat(finalList.get(0)).isEqualTo(2);
+        assertThat(day02.runProgram(LIST_C)).isEqualTo(LIST_C_RESULT);
     }
 
     @Test
-    public void exercise1_given_LIST_D_expects_first_2() {
+    public void runProgram_given_LIST_D_expects_LIST_D_RESULT() {
         Day02 day02 = new Day02();
-        List<Integer> finalList = day02.exercise1(LIST_D);
-        assertThat(finalList).isEqualTo(LIST_D_RESULT);
-        assertThat(finalList.get(0)).isEqualTo(2);
+        assertThat(day02.runProgram(LIST_D)).isEqualTo(LIST_D_RESULT);
     }
 
     @Test
-    public void exercise1_given_LIST_D_expects_first_30() {
+    public void runProgram_given_LIST_E_expects_LIST_E_RESULT() {
         Day02 day02 = new Day02();
-        List<Integer> finalList = day02.exercise1(LIST_E);
-        assertThat(finalList).isEqualTo(LIST_E_RESULT);
-        assertThat(finalList.get(0)).isEqualTo(30);
-    }
-
-    @Test
-    public void setNounAndVerb() {
-        int counter = 0;
-        while (counter <= 9999) {
-            System.out.println(counter / 100 + " " + counter % 100);
-            counter++;
-        }
+        assertThat(day02.runProgram(LIST_E)).isEqualTo(LIST_E_RESULT);
     }
 }

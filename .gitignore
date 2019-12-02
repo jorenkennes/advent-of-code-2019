@@ -3,3 +3,12 @@
 
 # Ignore Gradle build output directory
 build
+**/build/
+**/out/
+*.iml
+*-web-application.jar
+
+# Ignore all files under .idea, except the runConfigurations
+.idea/**
+!.idea/runConfigurations
+!.idea/dataSources.xml
