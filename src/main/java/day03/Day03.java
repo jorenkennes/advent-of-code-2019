@@ -9,7 +9,7 @@ import java.util.List;
 public class Day03 {
 
     public static void main(String[] args) throws IOException {
-        List<String> input = Util.readFile("day03.txt");
+        List<String> input = new Util().readFile("day03.txt");
 
         Day03 day03 = new Day03();
         int distance = day03.findWires(input);

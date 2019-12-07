@@ -31,7 +31,7 @@ public class SpacecraftModuleTest {
     }
 
     @Test
-    public void calculateTotalFuel_given__expects_2() {
+    public void calculateTotalFuel_given_14_expects_2() {
         SpacecraftModule spacecraftModule = new SpacecraftModule(14);
         assertThat(spacecraftModule.calculateTotalFuel(14)).isEqualTo(2);
     }

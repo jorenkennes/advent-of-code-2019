@@ -1,29 +1,20 @@
 package day02;
 
+import common.Day;
 import util.Util;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day02 {
+public class Day02 extends Day {
 
     public static void main(String[] args) throws IOException {
-
         Day02 day02 = new Day02();
-
-        List<Integer> input = Util.readCommaSeparatedFile("day02.txt");
-
-        System.out.println(day02.exercise1(input));
-        System.out.println(day02.exercise2(input));
+        day02.printResults();
     }
 
-    int exercise1(List<Integer> input) {
-        List<Integer> preprocessInput = preprocessInput(12, 2, input);
-        return runProgram(preprocessInput).get(0);
-    }
-
-    List<Integer> runProgram(List<Integer> input) {
+    public List<Integer> runProgram(List<Integer> input) {
         ArrayList<Integer> output = new ArrayList<>(input);
         int opcodeStartPosition = 0;
         while (true) {
@@ -49,8 +40,17 @@ public class Day02 {
         return output;
     }
 
-    int exercise2(List<Integer> input) {
-        int result = 0;
+    @Override
+    public int executePart1() throws IOException {
+        List<Integer> input = new Util().readCommaSeparatedFile("day02.txt");
+        List<Integer> preprocessInput = preprocessInput(12, 2, input);
+        return runProgram(preprocessInput).get(0);
+    }
+
+    @Override
+    public int executePart2() throws IOException {
+        List<Integer> input = new Util().readCommaSeparatedFile("day02.txt");
+        int result;
         int counter = 0;
         while (counter <= 9999) {
             List<Integer> output = new ArrayList<>(input);
@@ -59,8 +59,6 @@ public class Day02 {
             if (result == 19690720) break;
             counter++;
         }
-        System.out.println(counter);
-        System.out.println(result);
         return counter;
     }
 }
