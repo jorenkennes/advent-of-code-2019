@@ -11,7 +11,8 @@ public class Day05 extends Day {
         new Day05().printResults();
     }
 
-    public int runProgram(int[] input, int programInput) {
+    public int runProgram(int[] input, int[] programInput) {
+        int programInputCounter = 0;
         int result = 0;
         int opcodePosition = 0;
         int[] valuePositions;
@@ -32,7 +33,8 @@ public class Day05 extends Day {
                     break;
                 case 3:
                     //take input save to address in param 1
-                    input[input[opcodePosition + 1]] = programInput;
+                    input[input[opcodePosition + 1]] = programInput[programInputCounter];
+                    programInputCounter++;
                     opcodePosition += findInstructionLength(opcode);
                     break;
                 case 4:
@@ -135,11 +137,11 @@ public class Day05 extends Day {
 
     @Override
     public int executePart1() throws IOException {
-        return runProgram(new Util().readIntStream("day05.txt").toArray(), 1);
+        return runProgram(new Util().readIntStream("day05.txt", ",").toArray(), new int[]{1});
     }
 
     @Override
     public int executePart2() throws IOException {
-        return runProgram(new Util().readIntStream("day05.txt").toArray(), 5);
+        return runProgram(new Util().readIntStream("day05.txt", ",").toArray(), new int[]{5});
     }
 }

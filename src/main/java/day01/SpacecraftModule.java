@@ -21,9 +21,9 @@ public class SpacecraftModule {
     int calculateTotalFuel(double mass) {
         int fuel = (int) Math.floor(mass / 3) - 2;
         if (fuel >= 0) {
-            totalFuel += fuel;
-            calculateTotalFuel(fuel);
+            //totalFuel += fuel;
+            return calculateTotalFuel(fuel) + fuel;
         }
-        return totalFuel;
+        return 0;
     }
 }

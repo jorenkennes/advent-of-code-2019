@@ -18,66 +18,66 @@ public class Day05Test {
 
     @Test
     public void runProgram_given_POSITION_MODE_EQUALS_when_input_8_expects_1() {
-        assertThat(new Day05().runProgram(INPUT_POSITION_MODE_EQUALS, 8)).isEqualTo(1);
+        assertThat(new Day05().runProgram(INPUT_POSITION_MODE_EQUALS, new int[]{8})).isEqualTo(1);
     }
 
     @Test
     public void runProgram_given_POSITION_MODE_EQUALS_when_input_Not8_expects_0() {
-        assertThat(new Day05().runProgram(INPUT_POSITION_MODE_EQUALS, 7)).isEqualTo(0);
+        assertThat(new Day05().runProgram(INPUT_POSITION_MODE_EQUALS, new int[]{7})).isEqualTo(0);
     }
 
     @Test
     public void runProgram_given_POSITION_MODE_LESS_THAN_when_input_less_than_8_expects_1() {
-        assertThat(new Day05().runProgram(INPUT_POSITION_MODE_LESS_THAN, 7)).isEqualTo(1);
+        assertThat(new Day05().runProgram(INPUT_POSITION_MODE_LESS_THAN, new int[]{7})).isEqualTo(1);
     }
 
     @Test
     public void runProgram_given_POSITION_MODE_LESS_THAN_when_input_more_than_8_expects_0() {
-        assertThat(new Day05().runProgram(INPUT_POSITION_MODE_LESS_THAN, 9)).isEqualTo(0);
+        assertThat(new Day05().runProgram(INPUT_POSITION_MODE_LESS_THAN, new int[]{9})).isEqualTo(0);
     }
 
     @Test
     public void runProgram_given_IMMEDIATE_MODE_EQUALS_when_input_8_expects_1() {
-        assertThat(new Day05().runProgram(INPUT_IMMEDIATE_MODE_EQUALS, 8)).isEqualTo(1);
+        assertThat(new Day05().runProgram(INPUT_IMMEDIATE_MODE_EQUALS, new int[]{8})).isEqualTo(1);
     }
 
     @Test
     public void runProgram_given_IMMEDIATE_MODE_EQUALS_when_input_Not8_expects_0() {
-        assertThat(new Day05().runProgram(INPUT_IMMEDIATE_MODE_EQUALS, 9)).isEqualTo(0);
+        assertThat(new Day05().runProgram(INPUT_IMMEDIATE_MODE_EQUALS, new int[]{9})).isEqualTo(0);
     }
 
     @Test
     public void runProgram_given_INPUT_IMMEDIATE_MODE_LESS_THAN_when_input_less_than_8_expects_1() {
-        assertThat(new Day05().runProgram(INPUT_IMMEDIATE_MODE_LESS_THAN, 7)).isEqualTo(1);
+        assertThat(new Day05().runProgram(INPUT_IMMEDIATE_MODE_LESS_THAN, new int[]{7})).isEqualTo(1);
     }
 
     @Test
     public void runProgram_given_INPUT_POSITION_MODE_LESS_THAN_when_input_more_than_8_expects_0() {
-        assertThat(new Day05().runProgram(INPUT_IMMEDIATE_MODE_LESS_THAN, 9)).isEqualTo(0);
+        assertThat(new Day05().runProgram(INPUT_IMMEDIATE_MODE_LESS_THAN, new int[]{9})).isEqualTo(0);
     }
 
     @Test
     public void runProgram_given_POSITION_MODE_JUMP_when_input_0_expects_0() {
-        assertThat(new Day05().runProgram(POSITION_MODE_JUMP, 0)).isEqualTo(0);
+        assertThat(new Day05().runProgram(POSITION_MODE_JUMP, new int[]{0})).isEqualTo(0);
     }
 
     @Test
     public void runProgram_given_IMMEDIATE_MODE_JUMP_when_input_0_expects_0() {
-        assertThat(new Day05().runProgram(IMMEDIATE_MODE_JUMP, 0)).isEqualTo(0);
+        assertThat(new Day05().runProgram(IMMEDIATE_MODE_JUMP, new int[]{0})).isEqualTo(0);
     }
 
     @Test
     public void runProgram_given_large_example_when_input_less_than_8_expects_999() {
-        assertThat(new Day05().runProgram(BIG_EXAMPLE, 5)).isEqualTo(999);
+        assertThat(new Day05().runProgram(BIG_EXAMPLE, new int[]{5})).isEqualTo(999);
     }
 
     @Test
     public void runProgram_given_large_example_when_input_equal_to_8_expects_1000() {
-        assertThat(new Day05().runProgram(BIG_EXAMPLE, 8)).isEqualTo(1000);
+        assertThat(new Day05().runProgram(BIG_EXAMPLE, new int[]{8})).isEqualTo(1000);
     }
 
     @Test
     public void runProgram_given_large_example_when_input_more_than_8_expects_1001() {
-        assertThat(new Day05().runProgram(BIG_EXAMPLE, 10)).isEqualTo(1001);
+        assertThat(new Day05().runProgram(BIG_EXAMPLE, new int[]{9})).isEqualTo(1001);
     }
 }

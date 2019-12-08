@@ -23,8 +23,8 @@ public class Util {
                 .collect(Collectors.toList());
     }
 
-    public IntStream readIntStream(String fileName) throws IOException {
-        return Arrays.stream(readFile(fileName).get(0).split(","))
+    public IntStream readIntStream(String fileName, String regex) throws IOException {
+        return Arrays.stream(readFile(fileName).get(0).split(regex))
                 .mapToInt(s ->Integer.parseInt(s.trim()));
     }
 }
