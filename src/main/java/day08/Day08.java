@@ -5,11 +5,14 @@ import util.Util;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class Day08 extends Day {
 
-
     private Util util;
+    private final int WIDTH = 25;
+    private final int HEIGHT = 6;
+
 
     public static void main(String[] args) throws IOException {
         new Day08(new Util()).printResults();
@@ -21,40 +24,34 @@ public class Day08 extends Day {
 
     @Override
     public int executePart1() throws IOException {
-        return findOnesAndTwos(25, 6);
+        int[] pixels = util.readIntStream("day08.txt", "").toArray();
+        int[][] layers = splitIntoLayers(pixels, WIDTH, HEIGHT);
+        return findOnesAndTwos(layers);
     }
 
-    public int findOnesAndTwos(int width, int height) throws IOException {
-        int[] pixels = util.readIntStream("day08.txt", "").toArray();
-        int[][] pixelGroups = groupPixels(pixels, width, height);
-        int layer = getLayerFewest0Digits(pixelGroups);
-        int ones = getNumberOfDigitsInLayer(pixelGroups[layer], 1);
-        int twos = getNumberOfDigitsInLayer(pixelGroups[layer], 2);
+    public int findOnesAndTwos(int[][] layers) {
+        int layer = getLayerFewest0Digits(layers);
+        System.out.println(layer);
+        int ones = getNumberOfDigitsInLayer(layers[layer], 1);
+        int twos = getNumberOfDigitsInLayer(layers[layer], 2);
         return ones * twos;
     }
 
     public int getNumberOfDigitsInLayer(int[] layer, int digitToFind) {
-        int digitCount = 0;
-        for (int pixel = 0; pixel < layer.length; pixel++) {
-            digitCount += layer[pixel] == digitToFind ? 1 : 0;
-        }
-        return digitCount;
+        return (int) Arrays.stream(layer).filter(pixel -> pixel == digitToFind).count();
     }
 
-    public int getLayerFewest0Digits(int[][] pixelGroups) {
-        int layerFewestZeros = 0;
-        int lowestZerosInLayer = Integer.MAX_VALUE;
-        for (int layer = 0; layer < pixelGroups.length; layer++) {
-            int zeroCount = getNumberOfDigitsInLayer(pixelGroups[layer], 0);
-            if (zeroCount < lowestZerosInLayer) {
-                layerFewestZeros = layer;
-                lowestZerosInLayer = zeroCount;
-            }
-        }
-        return layerFewestZeros;
+    public int getLayerFewest0Digits(int[][] layers) {
+        return IntStream.range(0, layers.length)
+                .reduce((layerFewestZeros,i) -> {
+                    int zeroCount =  getNumberOfDigitsInLayer(layers[i], 0);
+                    int currentLowestZeros = getNumberOfDigitsInLayer(layers[layerFewestZeros], 0);
+                    return zeroCount < currentLowestZeros ?  i : layerFewestZeros;
+                })
+                .getAsInt();
     }
 
-    private int[][] groupPixels(int[] pixelArray, int width, int height) {
+    private int[][] splitIntoLayers(int[] pixelArray, int width, int height) {
         int nrOfLayers = pixelArray.length / (width * height);
         int[][] result = new int[nrOfLayers][width * height];
         for (int layer = 0; layer < nrOfLayers; layer++) {
@@ -68,28 +65,30 @@ public class Day08 extends Day {
     @Override
     public int executePart2() throws IOException {
         int[] pixels = util.readIntStream("day08.txt", "").toArray();
-        int[][] pixelGroups = groupPixels(pixels, 25, 6);
+        int[][] pixelGroups = splitIntoLayers(pixels, WIDTH, HEIGHT);
         int[] finalImage = decodeImage(pixelGroups);
 
-        for(int y = 0; y < 6; y++) {
-            for (int x = 0; x < 25; x++) {
-                String printvalue = finalImage[x + y * 25] == 1? "#" : " ";
-                System.out.print(printvalue);
-            }
-            System.out.println();
-        }
-        System.out.println(Arrays.toString(finalImage));
+        drawImage(finalImage);
         return 0;
     }
 
-    private int[] decodeImage(int[][] pixelLayers) {
-        int[] finalLayer = pixelLayers[0]; // init final layer with first layer
+    private void drawImage(int[] finalImage) {
+        for(int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                String printValue = finalImage[x + y * WIDTH] == 1? "#" : " ";
+                System.out.print(printValue);
+            }
+            System.out.println();
+        }
+    }
 
-        for (int layer = 0; layer < pixelLayers.length; layer++) {
-            for (int pixel = 0; pixel < pixelLayers[0].length; pixel++) {
+    private int[] decodeImage(int[][] layers) {
+        int[] finalLayer = layers[0]; // init final layer with first layer
+        for (int[] pixelLayer : layers) {
+            for (int pixel = 0; pixel < layers[0].length; pixel++) {
                 // overwrite final layer on places with "2"
                 if (finalLayer[pixel] == 2) {
-                    finalLayer[pixel] = pixelLayers[layer][pixel];
+                    finalLayer[pixel] = pixelLayer[pixel];
                 }
             }
         }

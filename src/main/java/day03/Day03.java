@@ -15,8 +15,7 @@ public class Day03 {
         int distance = day03.findWires(input);
         System.out.println(distance);
     }
-
-
+    
     // read input of wire 1
     // find all coordinates of wire 1, 2
     // add visualization each wire start, corner
@@ -26,10 +25,6 @@ public class Day03 {
     public int findWires(List<String> input) {
         ArrayList<Position> positionsWire1 = findPositions(input.get(0)); //wire 1
         ArrayList<Position> positionsWire2 = findPositions(input.get(1)); //wire 2
-
-//        positionsWire1 = recalculateSteps(positionsWire1);
-//        positionsWire2 = recalculateSteps(positionsWire2);
-
         return findResult(positionsWire1, positionsWire2);
     }
 
